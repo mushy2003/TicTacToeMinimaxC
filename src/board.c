@@ -46,6 +46,11 @@ void insert_value(board *board, char value, int x, int y)
     board->grid[x][y] = value;
 }
 
+void remove_value(board *board, int x, int y)
+{
+    board->grid[x][y] = EMPTY;
+}
+
 bool is_winner(board *board, char value)
 {
     return is_winner_vertical(board, value) || is_winner_horizontal(board, value) || is_winner_diagonal(board, value);
@@ -155,4 +160,16 @@ bool is_draw(board *board)
     }
 
     return !(is_winner(board, NOUGHT) || is_winner(board, CROSS));
+}
+
+void print_board(board *board)
+{
+    for (int i = 0; i < board->height_and_width; i++)
+    {
+        for (int j = 0; j < board->height_and_width; j++)
+        {
+            printf(" %c ", board->grid[i][j]);
+        }
+        printf("\n");
+    }
 }

@@ -23,8 +23,11 @@ void board_free(board *);
 // Checks if the given position is free
 bool is_free_position(board *, int, int);
 
-// Inserts a value into a free grid on the board.
+// Inserts a value into a free position on the board.
 void insert_value(board *, char, int, int);
+
+// Removes a value from a position and labels it as empty.
+void remove_value(board *, int, int);
 
 // Checks if there is a winner.
 bool is_winner(board *, char);
@@ -40,5 +43,8 @@ bool is_winner_diagonal(board *, char);
 
 // Checks if the game is a draw.
 bool is_draw(board *);
+
+// Prints the current state of the game grid.
+void print_grid(board *);
 
 #endif
