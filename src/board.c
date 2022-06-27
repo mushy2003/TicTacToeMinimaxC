@@ -48,7 +48,7 @@ void insert_value(board *board, char value, int x, int y)
 
 bool is_winner(board *board, char value)
 {
-    return is_winner_vertical || is_winner_horizontal || is_winner_diagonal;
+    return is_winner_vertical(board, value) || is_winner_horizontal(board, value) || is_winner_diagonal(board, value);
 }
 
 bool is_winner_vertical(board *board, char value)
