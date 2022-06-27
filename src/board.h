@@ -26,7 +26,7 @@ bool is_free_position(board *, int, int);
 // Inserts a value into a free grid on the board.
 void insert_value(board *, char, int, int);
 
-// Checks if the game has ended and if there is a winner.
+// Checks if there is a winner.
 bool is_winner(board *, char);
 
 // Checks if there is a winner vertically.
@@ -39,6 +39,6 @@ bool is_winner_horizontal(board *, char);
 bool is_winner_diagonal(board *, char);
 
 // Checks if the game is a draw.
-bool is_draw(board *, char);
+bool is_draw(board *);
 
 #endif

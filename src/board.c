@@ -53,6 +53,27 @@ bool is_winner(board *board, char value)
 
 bool is_winner_vertical(board *board, char value)
 {
+    char **grid = board->grid;
+
+    for (int j = 0; j < board->height_and_width; j++)
+    {
+        if (grid[0][j] == value)
+        {
+            for (int i = 1; i < board->height_and_width; i++)
+            {
+                if (grid[i - 1][j] != grid[i][j])
+                {
+                    break;
+                }
+
+                if (i == board->height_and_width - 1)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+
     return false;
 }
 
@@ -86,7 +107,20 @@ bool is_winner_diagonal(board *board, char value)
     return false;
 }
 
-bool is_draw(board *board, char value)
+bool is_draw(board *board)
 {
-    return false;
+    char **grid = board->grid;
+
+    for (int i = 0; i < board->height_and_width; i++)
+    {
+        for (int j = 0; j < board->height_and_width; j++)
+        {
+            if (grid[i][j] == EMPTY)
+            {
+                return false;
+            }
+        }
+    }
+
+    return !(is_winner(board, NOUGHT) || is_winner(board, CROSS));
 }
