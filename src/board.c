@@ -104,6 +104,38 @@ bool is_winner_horizontal(board *board, char value)
 
 bool is_winner_diagonal(board *board, char value)
 {
+    char **grid = board->grid;
+    if (grid[0][0] == value)
+    {
+        for (int i = 1; i < board->height_and_width; i++)
+        {
+            if (grid[i - 1][i - 1] != grid[i][i])
+            {
+                break;
+            }
+            if (i == board->height_and_width - 1)
+            {
+                return true;
+            }
+        }
+    }
+
+    if (grid[0][board->height_and_width - 1] == value)
+    {
+        for (int i = 1; i < board->height_and_width; i++)
+        {
+            if (grid[i - 1][board->height_and_width - 1 - (i - 1)] != grid[i][board->height_and_width - 1 - i])
+            {
+                break;
+            }
+
+            if (i == board->height_and_width - 1)
+            {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 
