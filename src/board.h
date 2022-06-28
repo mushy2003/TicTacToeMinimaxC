@@ -45,6 +45,9 @@ bool is_winner_diagonal(board *, char);
 bool is_draw(board *);
 
 // Prints the current state of the game grid.
-void print_grid(board *);
+void print_board(board *);
+
+// Switches the character from noughts to crosses and vice-versa.
+char switch_player(char);
 
 #endif

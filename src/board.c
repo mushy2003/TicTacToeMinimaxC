@@ -18,6 +18,14 @@ board *board_init(int height_and_width)
         assert(playing_board->grid[i] != NULL);
     }
 
+    for (int i = 0; i < height_and_width; i++)
+    {
+        for (int j = 0; j < height_and_width; j++)
+        {
+            playing_board->grid[i][j] = EMPTY;
+        }
+    }
+
     return playing_board;
 }
 
@@ -33,22 +41,22 @@ void board_free(board *board)
     free(board);
 }
 
-bool is_free_position(board *board, int x, int y)
+bool is_free_position(board *board, int row, int col)
 {
-    assert(x >= 0 && x < board->height_and_width && y >= 0 && y < board->height_and_width);
-    return board->grid[x][y] == EMPTY;
+    assert(row >= 0 && row < board->height_and_width && col >= 0 && col < board->height_and_width);
+    return board->grid[row][col] == EMPTY;
 }
 
-void insert_value(board *board, char value, int x, int y)
+void insert_value(board *board, char value, int row, int col)
 {
-    assert(is_free_position(board, x, y));
+    assert(is_free_position(board, row, col));
 
-    board->grid[x][y] = value;
+    board->grid[row][col] = value;
 }
 
-void remove_value(board *board, int x, int y)
+void remove_value(board *board, int row, int col)
 {
-    board->grid[x][y] = EMPTY;
+    board->grid[row][col] = EMPTY;
 }
 
 bool is_winner(board *board, char value)
@@ -171,5 +179,17 @@ void print_board(board *board)
             printf(" %c ", board->grid[i][j]);
         }
         printf("\n");
+    }
+}
+
+char switch_player(char current_player)
+{
+    assert(current_player == NOUGHT || current_player == CROSS);
+    switch (current_player)
+    {
+    case (NOUGHT):
+        return CROSS;
+    case (CROSS):
+        return NOUGHT;
     }
 }
